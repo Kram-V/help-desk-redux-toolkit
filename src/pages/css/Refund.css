@@ -8,8 +8,17 @@
   color: #fff;
 }
 
-.notes-container {
+.notes-container,
+.name-text-container {
   text-align: center;
+}
+
+.name-text-container {
+  margin-bottom: 10px;
+}
+
+.name-text {
+  text-decoration: underline;
 }
 
 .refund-text {
@@ -101,8 +110,9 @@
 }
 
 .modal-form-container input {
-  border: 1px solid #18181b;
+  border: 2px solid #18181b;
   border-radius: 20px 0 0 20px;
+  padding-left: 10px;
 }
 
 .add-modal-btn {

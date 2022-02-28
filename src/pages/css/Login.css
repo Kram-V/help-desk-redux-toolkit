@@ -31,7 +31,8 @@
 .input-container input {
   width: 100%;
   border: none;
-  border-radius: 10px !important;
+  border-radius: 5px !important;
+  padding-left: 10px;
   height: 30px;
 }
 

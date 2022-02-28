@@ -13,10 +13,18 @@ const Home = () => {
           <h1 className="h1-header">
             Welcome, <span className="username-text">{user.name}!</span>
           </h1>
-          <p>
-            Please do not hesitate to ask a question on how to refund your
-            money.
-          </p>
+
+          {user.isStaff === false ? (
+            <p>
+              Please do not hesitate to ask a question on how to refund your
+              money.
+            </p>
+          ) : (
+            <p>
+              Please assist our customers to make them satisfied about our
+              services
+            </p>
+          )}
         </>
       ) : (
         <>

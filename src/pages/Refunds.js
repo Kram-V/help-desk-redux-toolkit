@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 
 const Refunds = () => {
-  const { refunds, refund, isSuccess, isLoading } = useSelector(
+  const { refunds, isSuccess, isLoading } = useSelector(
     (state) => state.refund
   );
 
@@ -17,14 +17,6 @@ const Refunds = () => {
   useEffect(() => {
     dispatch(getRefunds());
   }, []);
-
-  // useEffect(() => {
-  //   return () => {
-  //     if (isSuccess) {
-  //       dispatch(reset());
-  //     }
-  //   };
-  // }, [dispatch, reset]);
 
   if (isSuccess) {
     dispatch(reset());

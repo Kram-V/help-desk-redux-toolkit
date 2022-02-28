@@ -35,9 +35,11 @@ const Header = () => {
           {user ? (
             <>
               <li>
-                <Link to="/create" className="nav-link">
-                  Create Refund
-                </Link>
+                {user.isStaff === false ? (
+                  <Link to="/create" className="nav-link">
+                    Create Refund
+                  </Link>
+                ) : null}
               </li>
 
               <li>

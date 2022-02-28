@@ -7,6 +7,7 @@ import {
   createNote,
   reset as notesReset,
 } from "../features/note/noteSlice";
+import { getUsers, reset as userReset } from "../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Modal from "react-modal";
@@ -23,6 +24,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%,-50%)",
     position: "relative",
+    border: "2px solid black",
   },
 };
 
@@ -33,12 +35,22 @@ const Refund = () => {
   const [text, setText] = useState("");
 
   const { refund, isLoading } = useSelector((state) => state.refund);
+  const { user } = useSelector((state) => state.auth);
+  const { isSuccess: userIsSuccess, users } = useSelector(
+    (state) => state.user
+  );
   const { notes, isLoading: noteIsLoading } = useSelector(
     (state) => state.note
   );
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
+  console.log(userIsSuccess);
 
   useEffect(() => {
     dispatch(getRefund(params.refundId));
@@ -78,6 +90,14 @@ const Refund = () => {
   return (
     <div className="refund-container">
       <h1 className="refund-text">Refund Details</h1>
+
+      <div className="name-text-container">
+        Request by:{" "}
+        <span className="name-text">
+          {users.map((user) => (user._id === refund.user ? user.name : null))}
+        </span>
+      </div>
+
       <div className="refund-headers">
         <h3>Address</h3>
         <h3>Status</h3>
@@ -111,18 +131,20 @@ const Refund = () => {
           ""
         )}
 
-        {refund.status !== "refunded" && (
+        {refund.status === "processing" && user.isStaff === false ? (
           <button className="close-btn" onClick={handleClose}>
             Close
           </button>
-        )}
+        ) : null}
 
-        {refund.status === "processing" ? (
+        {refund.status === "processing" && user.isStaff === false && (
           <p className="reminder-text">
             <span className="reminder">Reminder:</span> Please click the close
             button if you already received your money.
           </p>
-        ) : (
+        )}
+
+        {refund.status === "refunded" && user.isStaff === false && (
           <p className="reminder-text">
             <span className="reminder">Reminder:</span> This is already
             refunded.

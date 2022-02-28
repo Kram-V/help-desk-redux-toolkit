@@ -51,6 +51,7 @@ const Create = () => {
             value={product}
             onChange={(e) => setProduct(e.target.value)}
             required
+            placeholder="Product"
           ></input>
         </p>
 
@@ -60,6 +61,7 @@ const Create = () => {
             value={fullAddress}
             onChange={(e) => setFullAddress(e.target.value)}
             required
+            placeholder="Full Address"
           ></input>
         </p>
 
@@ -69,6 +71,7 @@ const Create = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
+            placeholder="Issue"
           />
         </p>
 

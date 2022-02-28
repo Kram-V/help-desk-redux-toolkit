@@ -73,6 +73,7 @@ const Register = () => {
             name="name"
             required
             placeholder="Name"
+            id="register-input"
           ></input>
         </p>
 
